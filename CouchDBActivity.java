@@ -30,41 +30,6 @@ public class CouchDBActivity extends Activity{
 	private static String username = "cs160";
 	private static String password = "306soda";
 
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        Button storeObject = (Button)findViewById(R.id.Button01);
-        Button getObject = (Button)findViewById(R.id.Button02);
-        
-        storeObject.setOnClickListener(this.storeObjectClickListener);
-        getObject.setOnClickListener(this.getObjectClickListener);
-        
-        
-    }
-    
-    private OnClickListener storeObjectClickListener = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			if(!putJSONObject(hostUrl,"programdatabase/foo"))
-			{
-				Log.e("creation database", "failure");
-			}
-			
-		}
-    };
-		
-	private OnClickListener getObjectClickListener = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			
-		}
-	}; 
-	
 	private Boolean createDatabase(String dbName)
 	{
 		return putJSONObject(this.hostUrl, dbName);
@@ -127,11 +92,6 @@ public class CouchDBActivity extends Activity{
 	    return null;
 	}
 	
-	private static void setHeader(HttpRequestBase request)  {
-	    request.setHeader("Accept", "application/json");
-	    request.setHeader("Content-type", "application/json");
-	    request.setHeader("Authorization", "Basic " + Base64.encodeToString((username+":"+password).getBytes(),Base64.DEFAULT));
-	}
 	
 	 private static String convertStreamToString(InputStream is) {
 	        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
